@@ -1,0 +1,14 @@
+.Header {
+    grid-column: 2 / 3;
+    grid-row: 1 / 1;
+    
+
+    background: linear-gradient(to bottom left, red, black);
+
+    color: #fff;
+    padding: .2em;
+
+    h3 {
+        margin: 0;
+    }
+}

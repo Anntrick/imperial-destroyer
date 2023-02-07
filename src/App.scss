@@ -1,0 +1,15 @@
+.App {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 3.5rem auto;
+  grid-template-rows: 5vh auto 5vh;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+
+@media (min-width: 600px) {
+  .App {
+    grid-template-columns: 10rem auto;
+  }
+}
