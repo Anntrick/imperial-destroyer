@@ -7,13 +7,17 @@ import { SwapiService } from '../../services/swapiService'
 
 import { Loading } from "../../components/Loading/Loading"
 import { ItemCard } from "../../components/ItemCard/ItemCard"
+import { Pagination } from "../../components/Pagination/Pagination"
 
 export const Starships = () => {
   const dispatch = useDispatch()
   const starships = useSelector(starshipsData)
+  const sPerPage = 6
 
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
+  const [currentPage, setCurrentPage] = useState(1)
+
 
   useEffect(() => {
     getStarships()
@@ -38,6 +42,11 @@ export const Starships = () => {
   const filteredStarships = starships?.items?.filter((starship) =>
     starship.name.toLowerCase().includes(searchTerm.toLowerCase())
   )
+
+  const indexOfLastS = currentPage * sPerPage;
+	const indexOfFirstS = indexOfLastS - sPerPage;
+  const pagStarships = filteredStarships?.slice(indexOfFirstS, indexOfLastS)
+
   return (
     <div className="Starships">
       <h2>Starships</h2>
@@ -50,11 +59,15 @@ export const Starships = () => {
       }
 
       <ul>
-        {filteredStarships?.map((starship) => (
-          <ItemCard data={starship} key={starship.name} />
+        {pagStarships?.map((starship) => (
+          <ItemCard data={starship} key={starship.name} errorImg="/starships/default.jpeg"/>
         ))}
       </ul>
 
+
+      {filteredStarships.length > sPerPage && 
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalItems={filteredStarships.length} itemsPerPage={sPerPage}/>
+      }
     </div>
   )
 }

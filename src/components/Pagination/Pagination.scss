@@ -1,0 +1,19 @@
+.Pagination {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+
+
+    li {
+        list-style: none;
+
+        button {
+            background-color: black;
+            border: 1px solid #333;
+            font-size: 2em;
+            width: 1.5em;
+            height: 1.5em;
+            color: white;
+        }
+    }
+}

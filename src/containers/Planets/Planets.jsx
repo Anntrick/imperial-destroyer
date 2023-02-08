@@ -6,11 +6,12 @@ import { SwapiService } from '../../services/swapiService'
 import './Planets.scss'
 import { Loading } from "../../components/Loading/Loading"
 import { ItemCard } from "../../components/ItemCard/ItemCard"
+import { Pagination } from "../../components/Pagination/Pagination"
 
 export const Planets = () => {
   const dispatch = useDispatch()
   const planets = useSelector(planetsData)
-  const PlPerPage = 6
+  const plPerPage = 6
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
   const [currentPage, setCurrentPage] = useState(1)
@@ -39,6 +40,10 @@ export const Planets = () => {
     planet.name.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
+  const indexOfLastPl = currentPage * plPerPage;
+	const indexOfFirstPl = indexOfLastPl - plPerPage;
+  const pagPlanets = filteredPlanets?.slice(indexOfFirstPl, indexOfLastPl)
+
   return (
     <div className="Planets">
       <h2>Planets</h2>
@@ -50,12 +55,14 @@ export const Planets = () => {
       }
 
       <ul>
-        {filteredPlanets?.map((planet) => (
-          <ItemCard data={planet} key={planet.name} />
+        {pagPlanets?.map((planet) => (
+          <ItemCard data={planet} key={planet.name} errorImg="/planets/default.jpeg"/>
         ))}
       </ul>
 
-      <Pagination />
+      {filteredPlanets.length > plPerPage && 
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalItems={filteredPlanets.length} itemsPerPage={plPerPage}/>
+      }
     </div>
 
   )
