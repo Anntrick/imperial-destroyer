@@ -1,39 +1,31 @@
 import './SideMenu.scss'
 import logo from '../../assets/menu-image.jpg'
 
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { BiPlanet, SiStarship } from 'react-icons/all'
+import { Link, useLocation } from 'react-router-dom'
 
 export const SideMenu = () => {
-
-  const [activeIndex, setActiveIndex] = useState(0)
-
-  const menuItems = [
-    {
-      title: 'Planets',
-      path: '/'
-    },
-    {
-      title: 'Starships',
-      path: '/starships'
-    }
-  ]
+  const location = useLocation()
 
   return (
     <aside className="SideMenu">
       <div className='image'>
         <img src={logo} alt='logo' />
       </div>
-
       <div className='menu'>
         <ul>
-          {menuItems.map((menuItem, index) => (
-            <li key={menuItem.title}>
-              <Link to={menuItem.path} className={activeIndex === index ? "active" : ""} onClick={() => setActiveIndex(index)}>
-                {menuItem.title}
+            <li>
+              <Link to="/" className={location.pathname === '/' ? "active" : ""}>
+                <BiPlanet/>
+                <span className='label'>Planets</span>
               </Link>
             </li>
-          ))}
+            <li>
+              <Link to="/starships" className={location.pathname === '/starships' ? "active" : ""}>
+                <SiStarship/>
+                <span className='label'>Starships</span>
+              </Link>
+            </li>
         </ul>
       </div>
     </aside>

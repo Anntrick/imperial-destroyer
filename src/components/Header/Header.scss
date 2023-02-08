@@ -2,7 +2,9 @@
     grid-column: 2 / 3;
     grid-row: 1 / 1;
     
-
+    justify-content: space-between;
+    flex-direction: row;
+    display: flex;
     background: linear-gradient(to bottom left, red, black);
 
     color: #fff;
@@ -10,5 +12,17 @@
 
     h3 {
         margin: 0;
+    }
+
+    h3, .icons {
+        align-self: center;
+        margin: 0 .5em;
+    }
+
+    .icons {
+        svg {
+            margin: 0 .2em;
+            font-size: 1.3rem;
+        }
     }
 }

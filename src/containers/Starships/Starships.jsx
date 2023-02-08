@@ -12,8 +12,8 @@ export const Starships = () => {
   const dispatch = useDispatch()
   const starships = useSelector(starshipsData)
 
+  const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
-  const [sortBy, setSortBy] = useState("")
 
   useEffect(() => {
     getStarships()
@@ -24,6 +24,7 @@ export const Starships = () => {
     try {
       const data = await SwapiService.getStarships()
       dispatch(addStarships(data))
+      setLoading(false)
     } catch (error) {
       dispatch(setError(error))
     }
@@ -31,7 +32,6 @@ export const Starships = () => {
   }
 
   const handleSort = (field) => {
-    setSortBy(field)
     dispatch(sortStarships({ field }))
   }
 
@@ -41,26 +41,20 @@ export const Starships = () => {
   return (
     <div className="Starships">
       <h2>Starships</h2>
-      {starships?.length === 0 &&
+      <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search by starship name" />
+      <button onClick={() => handleSort("crew")}>Sort by crew</button>
+      <button onClick={() => handleSort("cargo_capacity")}>Sort by cargo capacity</button>
+
+      {loading &&
         <Loading />
       }
 
-
-      <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search by starship name" />
-      <button onClick={() => handleSort("crew")}>Sort by crew</button>
-      <button onClick={() => handleSort("cargo")}>Sort by cargo capacity</button>
       <ul>
         {filteredStarships?.map((starship) => (
           <ItemCard data={starship} key={starship.name} />
         ))}
-
-
       </ul>
 
-
     </div>
-
-
   )
-
 }

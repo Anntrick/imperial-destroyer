@@ -10,9 +10,10 @@ import { ItemCard } from "../../components/ItemCard/ItemCard"
 export const Planets = () => {
   const dispatch = useDispatch()
   const planets = useSelector(planetsData)
-
+  const PlPerPage = 6
+  const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
-  const [sortBy, setSortBy] = useState("")
+  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
     getPlanets()
@@ -23,6 +24,7 @@ export const Planets = () => {
     try {
       const data = await SwapiService.getPlanets()
       dispatch(addPlanets(data))
+      setLoading(false)
     } catch (error) {
       dispatch(setError(error))
     }
@@ -30,7 +32,6 @@ export const Planets = () => {
   }
 
   const handleSort = (field) => {
-    setSortBy(field)
     dispatch(sortPlanets({ field }))
   }
 
@@ -41,23 +42,21 @@ export const Planets = () => {
   return (
     <div className="Planets">
       <h2>Planets</h2>
-      {planets?.length === 0 &&
+      <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search by planet name" />
+      <button onClick={() => handleSort("name")}>Sort by Name</button>
+
+      {loading &&
         <Loading />
       }
 
-
-      <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search by planet name" />
-      <button onClick={() => handleSort("name")}>Sort by Name</button>
       <ul>
         {filteredPlanets?.map((planet) => (
           <ItemCard data={planet} key={planet.name} />
         ))}
-
-
       </ul>
+
+      <Pagination />
     </div>
 
-
   )
-
 }

@@ -43,8 +43,11 @@ const starshipsSlice = createSlice({
         sortStarships(state, action) {
             const { field, direction } = action.payload;
             state.items.sort((a, b) => {
-                return direction === 'asc' ? 1 : -1
-               
+                if (Number(a[field]) < Number(b[field]))
+                    return -1
+                if (Number(a[field]) > Number(b[field]))
+                    return 1
+                return 0
             })
         },
         setError(state, action) {

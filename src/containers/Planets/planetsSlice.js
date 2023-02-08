@@ -43,8 +43,11 @@ const planetsSlice = createSlice({
         sortPlanets(state, action) {
             const { field, direction } = action.payload;
             state.items.sort((a, b) => {
-                return direction === 'asc' ? 1 : -1
-               
+                if (a[field] < b[field])
+                    return -1
+                if (a[field] > b[field])
+                    return 1
+                return 
             })
         },
         setError(state, action) {
