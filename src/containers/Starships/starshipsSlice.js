@@ -5,42 +5,42 @@ const initialState = {
     error: ''
 }
 
-const planetsSlice = createSlice({
-    name: "planets",
+const starshipsSlice = createSlice({
+    name: "starships",
     initialState,
     reducers: {
-        addPlanets(state, action) {
+        addStarships(state, action) {
             return {
                 ...state,
                 items: action.payload
             }
         },
         markAsConquered(state, action) {
-            const planetIndex = state.items.findIndex(planet => planet.name === action.payload)
-            if (planetIndex !== -1) {
+            const starshipIndex = state.items.findIndex(starship => starship.name === action.payload)
+            if (starshipIndex !== -1) {
                 return {
                     ...state,
                     items: [
                         ...state.items,
-                        state.items[planetIndex].conquered = true
+                        state.items[starshipIndex].conquered = true
                     ]
                 }
             }
 
         },
         markAsDeleted(state, action) {
-            const planetIndex = state.items.findIndex(planet => planet.name === action.payload)
-            if (planetIndex !== -1) {
+            const starshipIndex = state.items.findIndex(starship => starship.name === action.payload)
+            if (starshipIndex !== -1) {
                 return {
                     ...state,
                     items: [
                         ...state.items,
-                        state.items[planetIndex].deleted = true
+                        state.items[starshipIndex].deleted = true
                     ]
                 }
             }
         },
-        sortPlanets(state, action) {
+        sortStarships(state, action) {
             const { field, direction } = action.payload;
             state.items.sort((a, b) => {
                 return direction === 'asc' ? 1 : -1
@@ -56,7 +56,7 @@ const planetsSlice = createSlice({
     },
 })
 
-export const { addPlanets, markAsConquered, markAsDeleted, sortPlanets, setError } = planetsSlice.actions
+export const { addStarships, markAsConquered, markAsDeleted, sortStarships, setError } = starshipsSlice.actions
 
-export const planetsData = (state) => state.planetsSlice
-export default planetsSlice.reducer
+export const starshipsData = (state) => state.starshipsSlice
+export default starshipsSlice.reducer

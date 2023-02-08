@@ -6,7 +6,8 @@ const apiUrl = 'https://swapi.tech/api/'
 SwapiService.getPlanets = async () => {
   try {
     const response = await axios.get(`${apiUrl}planets/`)
-    return response.data
+    
+    return await SwapiService.addData(response.data.results)
   } catch (error) {
     console.error(error)
     return error
@@ -16,7 +17,8 @@ SwapiService.getPlanets = async () => {
 SwapiService.getStarships = async () => {
   try {
     const response = await axios.get(`${apiUrl}starships/`)
-    return response.data
+    
+    return await SwapiService.addData(response.data.results)
   } catch (error) {
     console.error(error)
     return error
@@ -24,11 +26,12 @@ SwapiService.getStarships = async () => {
 }
 
 SwapiService.addData = async (results) => {
-  let planetsData = []
-  for (let character of results) {
-      const charData = await axios.get(character.url)
+  console.log(results)
+  let data = []
+  for (let item of results) {
+      const itemData = await axios.get(item.url)
       
-      planetsData.push(charData.data.result.properties)
+      data.push(itemData.data.result.properties)
   }
-  return planetsData
+  return data
 }

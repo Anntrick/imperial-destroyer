@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import planetsSlice from '../containers/Planets/planetsSlice'
+import starshipsSlice from '../containers/Starships/starshipsSlice'
 
-const store = configureStore({ 
+export const store = configureStore({ 
     reducer: {
-        planetsSlice 
+        planetsSlice,
+        starshipsSlice
     }
 })
 
-
-export default store
