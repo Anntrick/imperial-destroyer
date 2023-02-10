@@ -1,3 +1,5 @@
+@import "../../themes/colors.scss";
+
 .Loading {
     display: flex;
     justify-content: center;
@@ -6,7 +8,7 @@
   }
   
   .dot {
-    border: 2px solid white;
+    border: 2px solid $text-color;
     border-top-color: transparent;
     border-left-color: transparent;
     border-radius: 50%;

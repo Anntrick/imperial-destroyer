@@ -1,3 +1,5 @@
+@import "../../themes/colors.scss";
+
 .Pagination {
     display: flex;
     flex-wrap: nowrap;
@@ -8,12 +10,12 @@
         list-style: none;
 
         button {
-            background-color: black;
-            border: 1px solid #333;
+            background-color: $primary;
+            border: 1px solid $border-color;
             font-size: 2em;
             width: 1.5em;
             height: 1.5em;
-            color: white;
+            color: $text-color;
         }
     }
 }

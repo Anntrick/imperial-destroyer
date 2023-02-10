@@ -1,6 +1,8 @@
-.Planets {
-    color: white;
+@import "../../themes/colors.scss";
 
+.Planets {
+    color: $text-color;
+    padding: 2em;
 
     ul {
         display: flex;

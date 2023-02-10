@@ -1,3 +1,5 @@
+@import "../../themes/colors.scss";
+
 .Header {
     grid-column: 2 / 3;
     grid-row: 1 / 1;
@@ -5,9 +7,9 @@
     justify-content: space-between;
     flex-direction: row;
     display: flex;
-    background: linear-gradient(to bottom left, red, black);
+    background-color: $secondary;
 
-    color: #fff;
+    color: $text-color;
     padding: .2em;
 
     h3 {

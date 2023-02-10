@@ -9,18 +9,20 @@ The application has two sections: Planets and Starships. In each section, you ca
 - Allow starships to be marked as damaged or out of combat
 - Add a screen to display the crew of a starship
 - Add a screen to display the vehicles of a planet
-- Improve the overall design of the application
+- Complete testing of the application, actually learning jest and testing library
+- Make a backend to improve the performance of the application by sending the data in correct format
 
 ## How to Run
 1. Clone the repository
 2. Run `npm install` to install the dependencies
 3. Run `npm start` to start the development server
-4. Access the application at `http://localhost:3000`
+4. Access the application
 
 ## Technologies Used
 - React
+- React router
 - SASS
-- Redux Toolkit
+- Redux with Toolkit
 - Vitest
 - Jest
 - Testing Library

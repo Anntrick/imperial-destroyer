@@ -1,11 +1,13 @@
+@import "../../themes/colors.scss";
+
 .Footer {
     grid-column: 2 / 3;
     grid-row: 3 / 3;
 
 
-    background: linear-gradient(to top left, red, black);
+    background-color: $secondary;
 
-    color: #fff;
+    color: $text-color;
     padding: 16px;
 }
 
