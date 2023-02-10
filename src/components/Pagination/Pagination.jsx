@@ -12,20 +12,18 @@ export const Pagination = ({ currentPage, setCurrentPage, totalItems, itemsPerPa
 
     return (
         <ul className="Pagination">
-            <li className={`${currentPage === 1? 'disabled' : ''}`} >
-                <button onClick={() => setCurrentPage(currentPage - 1)}>
-					&laquo;
-				</button>
+            <li>
+                <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1? 'disabled' : ''}>&laquo;</button>
             </li>
 
             {pages.map((page) => (
-				<li key={page} className={`${page === currentPage && 'active'}`} onClick={() => setCurrentPage(page)}>
+				<li key={page} className={page === currentPage && 'active'} onClick={() => setCurrentPage(page)}>
 					<button>{page}</button>
 				</li>
 			))}
 
-            <li className={`${currentPage === totalPages && 'disabled'}`}>
-				<button onClick={() => setCurrentPage(currentPage + 1)}>
+            <li >
+				<button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages && 'disabled'}>
 					&raquo;
 				</button>
 			</li>

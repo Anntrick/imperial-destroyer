@@ -1,0 +1,29 @@
+// Vitest Snapshot v1
+
+exports[`Planets component > Should render the component correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="Planets"
+  >
+    <h2>
+      Planets
+    </h2>
+    <input
+      defaultvalue=""
+      placeholder="Search by planet name"
+      type="text"
+    />
+    <button>
+      Sort by Name
+    </button>
+    <div
+      class="Loading"
+    >
+      <div
+        class="dot data-testid"
+      />
+    </div>
+    <ul />
+  </div>
+</DocumentFragment>
+`;

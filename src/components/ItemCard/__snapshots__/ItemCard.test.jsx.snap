@@ -1,0 +1,24 @@
+// Vitest Snapshot v1
+
+exports[`ItemCard component > renders correctly 1`] = `
+<div>
+  <div
+    class="ItemCard"
+  >
+    <img
+      alt="Tatooine"
+      src="/planets/tatooine.png"
+    />
+    <h2>
+      Tatooine
+    </h2>
+    <p>
+      Desert
+    </p>
+    <p>
+      Population of 200000
+       
+    </p>
+  </div>
+</div>
+`;

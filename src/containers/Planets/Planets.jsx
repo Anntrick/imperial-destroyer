@@ -27,7 +27,7 @@ export const Planets = () => {
       dispatch(addPlanets(data))
       setLoading(false)
     } catch (error) {
-      dispatch(setError(error))
+      //dispatch(setError(error))
     }
 
   }
@@ -60,7 +60,7 @@ export const Planets = () => {
         ))}
       </ul>
 
-      {filteredPlanets.length > plPerPage && 
+      {filteredPlanets?.length > plPerPage && 
         <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalItems={filteredPlanets.length} itemsPerPage={plPerPage}/>
       }
     </div>

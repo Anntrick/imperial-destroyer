@@ -2,7 +2,7 @@ import './Starships.scss'
 
 import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { addStarships, markAsConquered, markAsDeleted, sortStarships, setError, starshipsData } from "./starshipsSlice"
+import { addStarships, sortStarships, setError, starshipsData } from "./starshipsSlice"
 import { SwapiService } from '../../services/swapiService'
 
 import { Loading } from "../../components/Loading/Loading"
@@ -14,12 +14,13 @@ export const Starships = () => {
   const starships = useSelector(starshipsData)
   const sPerPage = 6
 
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [currentPage, setCurrentPage] = useState(1)
 
 
   useEffect(() => {
+    setLoading(true)
     getStarships()
 
   }, [])
@@ -30,7 +31,7 @@ export const Starships = () => {
       dispatch(addStarships(data))
       setLoading(false)
     } catch (error) {
-      dispatch(setError(error))
+     // dispatch(setError(error))
     }
 
   }
@@ -41,7 +42,7 @@ export const Starships = () => {
 
   const filteredStarships = starships?.items?.filter((starship) =>
     starship.name.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  ) || []
 
   const indexOfLastS = currentPage * sPerPage;
 	const indexOfFirstS = indexOfLastS - sPerPage;

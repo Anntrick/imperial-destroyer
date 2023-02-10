@@ -3,8 +3,8 @@ import './Loading.scss'
 
 export const Loading = () => {
   return (
-    <div className="Loading">
-      <div className="dot"></div>
+    <div data-testid="loading" className="Loading">
+      <div className="dot data-testid"></div>
     </div>
   )
 }
